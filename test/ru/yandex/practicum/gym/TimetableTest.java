@@ -195,9 +195,10 @@ public class TimetableTest {
 
         timetable.addNewTrainingSession(singleTrainingSession);
 
-        List<TrainingSession> result = timetable.getTrainingSessionsForDayAndTime(DayOfWeek.TUESDAY, new TimeOfDay(13, 0));
+        List<TrainingSession> trainingSessionsForDayAndTime = timetable.getTrainingSessionsForDayAndTime(DayOfWeek.TUESDAY, new TimeOfDay(13, 0));
 
-        Assertions.assertNull(result, "Для несуществующего дня должен был вернуться null");
+        Assertions.assertNotNull(trainingSessionsForDayAndTime, "Для несуществующего дня должен был вернуться список с нулевым кол-вом элементов, а не null");
+        Assertions.assertEquals(0, trainingSessionsForDayAndTime.size(),"Для несуществующего дня вернулся список с ненулевым кол-вом элементов, а не null");
     }
 
     @Test
@@ -211,9 +212,10 @@ public class TimetableTest {
 
         timetable.addNewTrainingSession(singleTrainingSession);
 
-        TreeMap<TimeOfDay, List<TrainingSession>> result = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
+        TreeMap<TimeOfDay, List<TrainingSession>> trainingSessionsForDay = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
 
-        Assertions.assertNull(result, "Для несуществующего дня должен был вернуться null");
+        Assertions.assertNotNull(trainingSessionsForDay, "Для несуществующего дня должен был вернуться Map с нуливем кол-вом элементов, а не null");
+        Assertions.assertEquals(0, trainingSessionsForDay.size(), "Для несуществующего дня вернулся Map с ненуливем кол-вом элементов");
     }
 
     @Test

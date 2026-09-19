@@ -23,13 +23,17 @@ public class Timetable {
     }
 
     public TreeMap<TimeOfDay, List<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
-        return timetable.get(dayOfWeek);
+        TreeMap<TimeOfDay, List<TrainingSession>> trainingSessionsForDay = timetable.get(dayOfWeek);
+        if (trainingSessionsForDay == null) return new TreeMap<TimeOfDay, List<TrainingSession>>();
+        return trainingSessionsForDay;
     }
 
     public List<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
         TreeMap<TimeOfDay, List<TrainingSession>> trainingsInDay = timetable.get(dayOfWeek);
-        if (trainingsInDay == null) return null;
-        return trainingsInDay.get(timeOfDay);
+        if (trainingsInDay == null) return new ArrayList<TrainingSession>();
+        List<TrainingSession> trainingSessionsForDayAndTime = trainingsInDay.get(timeOfDay);
+        if (trainingSessionsForDayAndTime == null) return new ArrayList<TrainingSession>();
+        return trainingSessionsForDayAndTime;
     }
 
     public TreeSet<CounterOfTrainings> getCountByCoaches() {
