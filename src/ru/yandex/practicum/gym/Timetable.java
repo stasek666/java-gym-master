@@ -10,7 +10,7 @@ public class Timetable {
         DayOfWeek trainingDay = trainingSession.getDayOfWeek();
         TimeOfDay trainingTime = trainingSession.getTimeOfDay();
         TreeMap<TimeOfDay, List<TrainingSession>> dayTimetable = timetable.get(trainingDay);
-        if (dayTimetable==null) {
+        if (dayTimetable == null) {
             dayTimetable = new TreeMap<>();
             timetable.put(trainingDay, dayTimetable);
         }
